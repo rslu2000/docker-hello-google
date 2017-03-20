@@ -1,6 +1,6 @@
 machine:
   environment:
-    PROJECT_NAME: circle-ctl-test
+    PROJECT_NAME: circle-ctl-test-162119
     CLUSTER_NAME: docker-hello-google-cluster
     CLOUDSDK_COMPUTE_ZONE: us-central1-f
     DEBIAN_FRONTEND: noninteractive
