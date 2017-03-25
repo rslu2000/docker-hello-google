@@ -35,6 +35,7 @@ test:
     - ls .. -al
     - sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube
     - export GOOGLE_APPLICATION_CREDENTIALS="/home/ubuntu/account-auth.json"
+    - sudo /opt/google-cloud-sdk/bin/gcloud container clusters get-credentials $CLUSTER_NAME
     # kubectl version
     - kubectl config view
 deployment:
