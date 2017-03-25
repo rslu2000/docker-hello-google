@@ -34,6 +34,7 @@ test:
     - ls -al
     - ls .. -al
     - sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube
+    - export GOOGLE_APPLICATION_CREDENTIALS="/home/ubuntu/account-auth.json"
     # kubectl version
     - kubectl config view
 deployment:
