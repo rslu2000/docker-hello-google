@@ -12,7 +12,7 @@ sudo /opt/google-cloud-sdk/bin/gcloud container clusters get-credentials  docker
 kubectl config set-credentials cluster-admin --client-key=/home/ubuntu/account-auth.json
 # kubectl run docker-hello-google --image=us.gcr.io/${PROJECT_NAME}/hello:$CIRCLE_SHA1
 kubectl patch deployment docker-hello-google -p '{"spec":{"template":{"spec":{"containers":[{"name":"docker-hello-google-cluster","image":"us.gcr.io/circle-ctl-test-162119/hello:'"$CIRCLE_SHA1"'"}]}}}}'
-kubectl expose deployment docker-hello-google --type=LoadBalancer
+kubectl expose deployment docker-hello-google --type="LoadBalancer"
 kubectl get services docker-hello-google
 kubectl describe services docker-hello-google
 
