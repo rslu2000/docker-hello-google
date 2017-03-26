@@ -16,7 +16,6 @@ dependencies:
     - sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/account-auth.json
     - sudo /opt/google-cloud-sdk/bin/gcloud config set project $PROJECT_NAME
     - sudo /opt/google-cloud-sdk/bin/gcloud --quiet config set container/cluster $CLUSTER_NAME
-    # Reading the zone from the env var is not working so we set it here
     - sudo /opt/google-cloud-sdk/bin/gcloud config set compute/zone ${CLOUDSDK_COMPUTE_ZONE}
     - sudo /opt/google-cloud-sdk/bin/gcloud config set account circle2google-sa@circle-ctl-test-162119.iam.gserviceaccount.com
     - sudo /opt/google-cloud-sdk/bin/gcloud --quiet container clusters get-credentials $CLUSTER_NAME
@@ -26,8 +25,8 @@ dependencies:
 
 test:
   post:
-    - docker run -d -p 3000:3000 -e "SECRET_KEY_BASE=abcd1234" us.gcr.io/${PROJECT_NAME}/hello:$CIRCLE_SHA1; sleep 6
-    - curl --retry 10 --retry-delay 5 -v http://localhost:3000
+    - docker run -d -p 3000:3000 -e "SECRET_KEY_BASE=abcd1234" us.gcr.io/${PROJECT_NAME}/hello:$CIRCLE_SHA1; sleep 4
+    - curl --retry 6 --retry-delay 5 -v http://localhost:3000
     - export GOOGLE_APPLICATION_CREDENTIALS="/home/ubuntu/account-auth.json"
     - sudo /opt/google-cloud-sdk/bin/gcloud container clusters get-credentials $CLUSTER_NAME
     - sudo /opt/google-cloud-sdk/bin/gcloud config set container/use_client_certificate True
